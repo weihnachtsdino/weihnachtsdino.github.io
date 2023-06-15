@@ -1,4 +1,6 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     user-select: none;
     font-family: 'Helvetica', Arial, sans-serif;
@@ -19,27 +21,27 @@ body {
 
 .score {
     position: absolute;
-    font-size: 5vmin;
-    right: 1vmin;
-    top: 1vmin;
+    font-size: 3vmax;
+    right: 1vmax;
+    top: 20vmin;
 }
 
 .high-score {
     position: absolute;
-    font-size: 5vmin;
-    right: 20vmin;
-    top: 1vmin;
-    color: grey;
+    font-size: 3vmax;
+    right: 12vmax;
+    top: 20vmin;
+    color: rgb(160, 160, 160);
     text-transform: uppercase;
 }
 
 .start-screen {
     position: absolute;
-    font-size: 5vmin;
+    font-size: 4vmax;
     text-align: center;
     top: 50%;
     left: 50%;
-    transform: translate( -50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 .hide {
@@ -66,5 +68,13 @@ body {
     position: absolute;
     left: calc(var(--left)* 1%);
     height: 30%;
-    bottom: 0;    
+    bottom: 0;
+}
+
+.cloud {
+    position: absolute;
+    left: calc(var(--left)* 1%);
+    width: 15%;
+    top: calc(var(--top)* 1%);
+    z-index: -1;
 }

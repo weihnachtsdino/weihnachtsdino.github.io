@@ -1,6 +1,7 @@
 import { setupGround, updateGround } from "./ground.js"
 import { setupDino, updateDino, getDinoRect, setDinoLose } from "./dino.js"
 import { setupCactus, updateCactus, getCactusRects } from "./cactus.js"
+import { setupCloud, updateCloud } from "./cloud.js"
 
 const WORLD_WIDTH = 100
 const WORLD_HEIGHT = 30
@@ -32,6 +33,7 @@ function update(time) {
     updateGround(delta, speedScale)
     updateDino(delta, speedScale)
     updateCactus(delta, speedScale)
+    updateCloud(delta, speedScale)
     updateSpeedScale(delta)
     updateScore(delta)
     if (checkLose()) return handleLose()
@@ -59,12 +61,12 @@ function isCollision(rect1, dinoRect) {
     let rect1Left = rect1.left + 0.25 * rect1Width
     let rect1Top = rect1.top + 0.25 * rect1Height
     let rect1Bottom = rect1.bottom - 0.25 * rect1Height
-    
+
     return (
         rect1Left < dinoRight &&
-        rect1Top < dinoBottom  &&
-        rect1Right > dinoLeft  &&
-        rect1Bottom > dinoTop 
+        rect1Top < dinoBottom &&
+        rect1Right > dinoLeft &&
+        rect1Bottom > dinoTop
     )
 }
 
@@ -74,13 +76,13 @@ function updateSpeedScale(delta) {
 
 function updateScore(delta) {
     score += delta * 0.01
-    var numb = Math.floor(score)/100
+    var numb = Math.floor(score) / 100
     scoreElem.textContent = numb.toFixed(2) + " €"
 }
 
 function updateHighScore() {
     if (lastScore > highScore) {
-        var numb = Math.floor(lastScore)/100
+        var numb = Math.floor(lastScore) / 100
         highScoreElem.textContent = "Hi " + numb.toFixed(2) + " €";
         highScore = lastScore
     }
@@ -96,6 +98,7 @@ function handleStart() {
     setupGround()
     setupDino()
     setupCactus()
+    setupCloud()
     startScreenElem.classList.add("hide")
     window.requestAnimationFrame(update)
 }
