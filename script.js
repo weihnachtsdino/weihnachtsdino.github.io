@@ -8,6 +8,7 @@ const SPEED_SCALE_INCREASE = 0.00001
 
 const worldElem = document.querySelector("[data-world]")
 const scoreElem = document.querySelector("[data-score]")
+const highScoreElem = document.querySelector("[data-high-score]")
 const startScreenElem = document.querySelector("[data-start-screen]")
 
 setPixelToWorldScale()
@@ -18,6 +19,8 @@ document.addEventListener("keydown", handleStart, { once: true })
 let lastTime
 let speedScale
 let score
+var lastScore = 0
+var highScore = 0
 function update(time) {
     if (lastTime == null) {
         lastTime = time
@@ -71,14 +74,25 @@ function updateSpeedScale(delta) {
 
 function updateScore(delta) {
     score += delta * 0.01
-    var numb = Math.floor(score )/100
+    var numb = Math.floor(score)/100
     scoreElem.textContent = numb.toFixed(2) + " €"
+}
+
+function updateHighScore() {
+    if (lastScore > highScore) {
+        var numb = Math.floor(lastScore)/100
+        highScoreElem.textContent = "Hi " + numb.toFixed(2) + " €";
+        highScore = lastScore
+    }
 }
 
 function handleStart() {
     lastTime = null
     speedScale = 1
+    lastScore = score
+    updateHighScore()
     score = 0
+    console.log("score", score, "lastscore", lastScore, "highscore", highScore)
     setupGround()
     setupDino()
     setupCactus()

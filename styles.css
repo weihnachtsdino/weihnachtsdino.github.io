@@ -24,6 +24,15 @@ body {
     top: 1vmin;
 }
 
+.high-score {
+    position: absolute;
+    font-size: 5vmin;
+    right: 20vmin;
+    top: 1vmin;
+    color: grey;
+    text-transform: uppercase;
+}
+
 .start-screen {
     position: absolute;
     font-size: 5vmin;
