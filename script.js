@@ -21,6 +21,7 @@ let lastTime
 let speedScale
 var score
 var highScore = 0
+var endScreen = document.createElement("div")
 function update(time) {
     if (lastTime == null) {
         lastTime = time
@@ -97,15 +98,25 @@ function handleStart() {
     setupCactus()
     setupCloud()
     startScreenElem.classList.add("hide")
+    endScreen.classList.add("hide")
     window.requestAnimationFrame(update)
 }
 
 function handleLose() {
     setDinoLose()
-    startScreenElem.classList.remove("hide")
+    //startScreenElem.classList.remove("hide")
+    setupEndScreen()
+    endScreen.classList.remove("hide")
     setTimeout(() => {
         document.addEventListener("keydown", handleStart, { once: true })
-    }, 1000)
+    }, 800)
+}
+
+function setupEndScreen() {
+    var numb = Math.floor(highScore) / 100
+    endScreen.textContent = "Glückwunsch! \r\n Deine Spende beträgt \r\n" + numb.toFixed(2) + " € !"
+    endScreen.classList.add("end-screen")
+    document.body.append(endScreen)
 }
 
 function setPixelToWorldScale() {

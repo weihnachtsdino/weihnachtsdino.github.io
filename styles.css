@@ -16,33 +16,31 @@ body {
 }
 
 .world {
-    overflow: hidden;
+    /* overflow: hidden; */
     position: relative;
 }
 
-.score {
+.score, .high-score {
     position: absolute;
     font-size: 2.5vmax;
+    top: 20vmin;
     right: 1vmax;
-    top: 20vmin;
-}
-
-.high-score {
-    position: absolute;
-    font-size: 2.5vmax;
-    right: 10vmax;
-    top: 20vmin;
-    color: rgb(160, 160, 160);
     text-transform: uppercase;
 }
 
-.start-screen {
+.high-score {
+    right: 10vmax;
+    color: rgb(160, 160, 160);
+}
+
+.start-screen, .end-screen {
     position: absolute;
     font-size: 3vmax;
     text-align: center;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    white-space: pre-line;
 }
 
 .hide {
