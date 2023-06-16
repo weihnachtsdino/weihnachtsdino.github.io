@@ -19,8 +19,7 @@ document.addEventListener("keydown", handleStart, { once: true })
 
 let lastTime
 let speedScale
-let score
-var lastScore = 0
+var score
 var highScore = 0
 function update(time) {
     if (lastTime == null) {
@@ -36,6 +35,7 @@ function update(time) {
     updateCloud(delta, speedScale)
     updateSpeedScale(delta)
     updateScore(delta)
+    updateHighScore()
     if (checkLose()) return handleLose()
 
     lastTime = time
@@ -81,20 +81,17 @@ function updateScore(delta) {
 }
 
 function updateHighScore() {
-    if (lastScore > highScore) {
-        var numb = Math.floor(lastScore) / 100
-        highScoreElem.textContent = "Hi " + numb.toFixed(2) + " €";
-        highScore = lastScore
+    if (score > highScore) {
+        highScore = score
     }
+    var numb = Math.floor(highScore) / 100
+    highScoreElem.textContent = "Hi " + numb.toFixed(2) + " €";
 }
 
 function handleStart() {
     lastTime = null
     speedScale = 1
-    lastScore = score
-    updateHighScore()
     score = 0
-    console.log("score", score, "lastscore", lastScore, "highscore", highScore)
     setupGround()
     setupDino()
     setupCactus()

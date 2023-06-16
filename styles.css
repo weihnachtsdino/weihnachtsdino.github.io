@@ -22,15 +22,15 @@ body {
 
 .score {
     position: absolute;
-    font-size: 3vmax;
+    font-size: 2.5vmax;
     right: 1vmax;
     top: 20vmin;
 }
 
 .high-score {
     position: absolute;
-    font-size: 3vmax;
-    right: 12vmax;
+    font-size: 2.5vmax;
+    right: 10vmax;
     top: 20vmin;
     color: rgb(160, 160, 160);
     text-transform: uppercase;
@@ -38,7 +38,7 @@ body {
 
 .start-screen {
     position: absolute;
-    font-size: 4vmax;
+    font-size: 3vmax;
     text-align: center;
     top: 50%;
     left: 50%;
@@ -75,7 +75,7 @@ body {
 .cloud {
     position: absolute;
     left: calc(var(--left)* 1%);
-    width: 15%;
+    width: 20vmin;
     top: calc(var(--top)* 1%);
     z-index: -1;
 }
