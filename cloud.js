@@ -35,9 +35,10 @@ function createCloud() {
     cloud.src = "imgs/cloud.png"
     cloud.classList.add("cloud")
     setCustomProperty(cloud, "--left", 100)
-    cloudYPos = randomNumberBetween(0, 30)
+    cloudYPos = randomNumberBetween(5, 45)
     setCustomProperty(cloud, "--top", cloudYPos)
-    worldElem.append(cloud)
+    //worldElem.append(cloud)
+    document.body.append(cloud)
 }
 
 function randomNumberBetween(min, max) {
