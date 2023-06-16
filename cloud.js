@@ -3,7 +3,7 @@ import { getCustomProperty, incrementCustomProperty, setCustomProperty } from ".
 const SPEED = 0.025
 const CLOUD_INTERVAL_MIN = 500
 const CLOUD_INTERVAL_MAX = 4000
-const worldElem = document.querySelector("[data-world]")
+const bgElem = document.querySelector("[data-bg]")
 
 let nextCloudTime
 let cloudYPos
@@ -37,8 +37,8 @@ function createCloud() {
     setCustomProperty(cloud, "--left", 100)
     cloudYPos = randomNumberBetween(5, 45)
     setCustomProperty(cloud, "--top", cloudYPos)
-    //worldElem.append(cloud)
-    document.body.append(cloud)
+    bgElem.append(cloud)
+    //document.body.append(cloud)
 }
 
 function randomNumberBetween(min, max) {

@@ -13,7 +13,7 @@ let currentFrameTime
 let yVelocity
 let jumpTime
 let jumpStartTime
-export function setupDino(){
+export function setupDino() {
     isJumping = false
     isFalling = false
     dinoFrame = 0
@@ -21,12 +21,14 @@ export function setupDino(){
     yVelocity = 0
     setCustomProperty(dinoElem, "--bottom", 0)
     document.removeEventListener("keydown", onJump)
+    document.addEventListener("mousedown", onJump)
     document.removeEventListener("keyup", stopJump)
     document.addEventListener("keydown", onJump)
+    document.addEventListener("mousedown", onJump)
     document.addEventListener("keyup", stopJump)
 }
 
-export function updateDino(delta, speedScale){
+export function updateDino(delta, speedScale) {
     handleRun(delta, speedScale)
     handleJump(delta)
     handleFall(delta)
@@ -36,11 +38,11 @@ export function getDinoRect() {
     return dinoElem.getBoundingClientRect()
 }
 
-export function setDinoLose(){
+export function setDinoLose() {
     dinoElem.src = "imgs/dino-lose.png"
 }
 
-function handleRun(delta, speedScale){
+function handleRun(delta, speedScale) {
     if (isJumping) {
         dinoElem.src = `imgs/dino-stationary.png`
         return
@@ -78,11 +80,11 @@ function outJump(){
     isJumping = false
 } */
 
-function handleJump(delta){
+function handleJump(delta) {
     if (!isJumping) return
 
     incrementCustomProperty(dinoElem, "--bottom", yVelocity * delta)
-    
+
     if (getCustomProperty(dinoElem, "--bottom") <= 0) {
         setCustomProperty(dinoElem, "--bottom", 0)
         isJumping = false
@@ -97,7 +99,13 @@ function handleJump(delta){
 }
 
 function onJump(e) {
-    if (e.code !== "Space" || isJumping || isFalling) return
+    if (isJumping || isFalling) return
+    if (e instanceof MouseEvent) {
+        yVelocity = JUMP_SPEED
+        isJumping = true
+        isFalling = false
+    }
+    if (e.code !== "Space") return
 
     yVelocity = JUMP_SPEED
     isJumping = true
@@ -116,7 +124,7 @@ function handleFall(delta) {
     if (!isFalling) return
 
     incrementCustomProperty(dinoElem, "--bottom", yVelocity * delta)
-    
+
     if (getCustomProperty(dinoElem, "--bottom") <= 0) {
         setCustomProperty(dinoElem, "--bottom", 0)
         isJumping = false

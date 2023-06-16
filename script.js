@@ -15,6 +15,7 @@ const startScreenElem = document.querySelector("[data-start-screen]")
 setPixelToWorldScale()
 window.addEventListener("resize", setPixelToWorldScale)
 document.addEventListener("keydown", handleStart, { once: true })
+document.addEventListener("mousedown", handleStart, { once: true })
 
 
 let lastTime
@@ -109,6 +110,7 @@ function handleLose() {
     endScreen.classList.remove("hide")
     setTimeout(() => {
         document.addEventListener("keydown", handleStart, { once: true })
+        document.addEventListener("mousedown", handleStart, { once: true })
     }, 800)
 }
 
