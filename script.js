@@ -78,16 +78,16 @@ function updateSpeedScale(delta) {
 
 function updateScore(delta) {
     score += delta * 0.01
-    var numb = Math.floor(score) / 100
-    scoreElem.textContent = numb.toFixed(2) + " €"
+    var numb = Math.floor(score)
+    scoreElem.textContent = numb
 }
 
 function updateHighScore() {
     if (score > highScore) {
         highScore = score
     }
-    var numb = Math.floor(highScore) / 100
-    highScoreElem.textContent = "Hi " + numb.toFixed(2) + " €";
+    var numb = Math.floor(highScore)
+    highScoreElem.textContent = "Hi " + numb;
 }
 
 function handleStart() {
@@ -115,8 +115,8 @@ function handleLose() {
 }
 
 function setupEndScreen() {
-    var numb = Math.floor(highScore) / 100
-    endScreen.textContent = "Glückwunsch! \r\n Deine Spende beträgt \r\n" + numb.toFixed(2) + " € !"
+    var numb = Math.floor(highScore)
+    endScreen.textContent = "Glückwunsch! \r\n Dein Score beträgt " + numb + "!"
     endScreen.classList.add("end-screen")
     document.body.append(endScreen)
 }
